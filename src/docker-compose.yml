@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  grpc-example:
+    image: ${DOCKER_REGISTRY-}grpcexample
+    build:
+      context: .
+      dockerfile: grpc-example/Dockerfile
+
+  grpc-client:
+    image: ${DOCKER_REGISTRY-}grpcclient
+    build:
+      context: .
+      dockerfile: grpc-client/Dockerfile
+    depends_on:
+      - grpc-example
